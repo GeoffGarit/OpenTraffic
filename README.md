@@ -4,7 +4,7 @@ OpenTraffic is an open-source alternative to WTraffic under licence MIT.
 
 ## How to use OpenTraffic ?
 
-OpenTraffic is a simple HTML/CSS/JS project, you just have to make your own `train.json` file using OTJson file formatting (explain below) and open `index.html` on any browser. Alternatively, `open-traffic.js` can be implemented on any other webpage given it has the necessary context.
+OpenTraffic is a simple HTML/CSS/JS project, you just have to make your own `traffic/train.json` file using OTJson file formatting (explain below) and open `index.html` on any browser. Alternatively, `open-traffic.js` can be implemented on any other webpage given it has the necessary context.
 
 ### What is OTJson ?
 
