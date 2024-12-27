@@ -25,6 +25,7 @@ OTJson is the json formatting used by OpenTraffic. Here's an example :
 	}
 ]
 ```
+---
 It's an array of "trains" where each objects is a different train. The train is defined by :
 
 | name        | String - Name of the train. Not in use currently. (Optional)                                                         |
