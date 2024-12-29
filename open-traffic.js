@@ -13,7 +13,9 @@
  * Current version: 0.0.1
  */
 const maxTrains = 7;
+const trainHeight = 111; // Height of the train in pixels based on current highest background image in ./assets
 let currentTrains = 0;
+let occupiedPositions = [];
 
 fetch('./traffic/train.json')
 	.then(response => response.json())
@@ -65,6 +67,28 @@ function checkImageExists(url, callback) {
     img.src = url;
 }
 
+/**
+ * Function to determine the top position of the train to prevent superposition of images
+ * @returns {number} The top position of the train
+ */
+function trainPos() {
+  const screenHeight = window.innerHeight;
+  const maxPositions = Math.floor(screenHeight / trainHeight);
+  let topPosition;
+
+  const possiblePositions = Array.from({ length: maxPositions }, (_, i) => i * trainHeight);
+  const availablePositions = possiblePositions.filter((pos) => !occupiedPositions.includes(pos));
+
+  if (availablePositions.length > 0) {
+    topPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+    occupiedPositions.push(topPosition);
+  } else {
+    topPosition = occupiedPositions.shift();
+    occupiedPositions.push(topPosition);
+  }
+
+  return topPosition;
+}
 
 function showTrain(train) {
 	if (!train.composition || !train.speed) {
@@ -73,9 +97,11 @@ function showTrain(train) {
 
 	currentTrains++;
 
+	let topPosition = trainPos();
+
 	const trainDiv = document.createElement('div');
 	trainDiv.classList.add('train');
-	trainDiv.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+	trainDiv.style.top = `${topPosition}px`;
 	if (train.background) {
 		checkImageExists(train.background, (exists) => {
 			if (exists) {
@@ -136,5 +162,6 @@ function showTrain(train) {
 	trainMarquee.addEventListener('animationiteration', () => {
 		trainDiv.remove();
 		currentTrains--;
+		occupiedPositions = occupiedPositions.filter((pos) => pos !== topPosition);
 	});
 }
