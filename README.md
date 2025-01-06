@@ -28,8 +28,9 @@ OTJson is the json formatting used by OpenTraffic. Here's an example :
 ---
 It's an array of "trains" where each objects is a different train. The train is defined by :
 
-| name        | String - Name of the train. Not in use currently. (Optional)                                                         |
+| Attribute   | About                                                         							     |
 |-------------|----------------------------------------------------------------------------------------------------------------------|
+| name        | String - Name of the train. Not in use currently. (Optional)                                                         |
 | direction   | Enum - Direction of the train. Can be 'L', 'R', 'any' or empty. (Optional)                                           |
 | speed       | Integer - Maximum speed of the train in km/h.                                                                        |
 | composition | Array - array of images URL of your train elements. Can also contain a repeatting order in the form "\<quantity>*'\<image_url>'". |
