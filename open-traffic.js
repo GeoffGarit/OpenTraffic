@@ -61,10 +61,10 @@ function expandComposition(composition) {
 }
 
 function checkImageExists(url, callback) {
-    const img = new Image();
-    img.onload = () => callback(true);
-    img.onerror = () => callback(false);
-    img.src = url;
+	const img = new Image();
+	img.onload = () => callback(true);
+	img.onerror = () => callback(false);
+	img.src = url;
 }
 
 /**
@@ -80,11 +80,11 @@ function trainPos() {
   const availablePositions = possiblePositions.filter((pos) => !occupiedPositions.includes(pos));
 
   if (availablePositions.length > 0) {
-    topPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
-    occupiedPositions.push(topPosition);
+	topPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+	occupiedPositions.push(topPosition);
   } else {
-    topPosition = occupiedPositions.shift();
-    occupiedPositions.push(topPosition);
+	topPosition = occupiedPositions.shift();
+	occupiedPositions.push(topPosition);
   }
 
   return topPosition;
