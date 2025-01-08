@@ -72,22 +72,21 @@ function checkImageExists(url, callback) {
  * @returns {number} The top position of the train
  */
 function trainPos() {
-  const screenHeight = window.innerHeight;
-  const maxPositions = Math.floor(screenHeight / trainHeight);
-  let topPosition;
+	const screenHeight = window.innerHeight;
+	const maxPositions = Math.floor(screenHeight / trainHeight);
+	let topPosition;
 
-  const possiblePositions = Array.from({ length: maxPositions }, (_, i) => i * trainHeight);
-  const availablePositions = possiblePositions.filter((pos) => !occupiedPositions.includes(pos));
+	const possiblePositions = Array.from({ length: maxPositions }, (_, i) => i * trainHeight);
+	const availablePositions = possiblePositions.filter((pos) => !occupiedPositions.includes(pos));
 
-  if (availablePositions.length > 0) {
-	topPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
-	occupiedPositions.push(topPosition);
-  } else {
 	topPosition = occupiedPositions.shift();
+	if (availablePositions.length > 0) {
+		topPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+		occupiedPositions.push(topPosition);
+	}
 	occupiedPositions.push(topPosition);
-  }
 
-  return topPosition;
+	return topPosition;
 }
 
 function showTrain(train) {
